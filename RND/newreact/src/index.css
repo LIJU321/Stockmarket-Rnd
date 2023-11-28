@@ -1,0 +1,304 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./fonts/Poppins-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+#TodoimageDiv{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 10px;
+}
+
+#Label{
+  max-width: 200px;
+  max-height: 50px;
+  width: 100%;
+  height: 100%;
+  font-family: "poppins";
+  font-size: 39px;
+  font-weight: 300;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+#Tittle1{
+  height: 100%;
+}
+
+#Tittle{
+  border-radius: 20px;
+  display: flex;
+  font-family: "poppins";
+  font-size: 40px;
+  font-weight: 300;
+  margin-top: 0px;
+  background-color: cadetblue;
+}
+
+#Label2{
+  font-family: "poppins";
+  font-size: 37px;
+  font-weight: 300;
+  margin-left: 20px
+}
+
+#mainDiv{
+  height: 100%;
+  background-color: crimson;
+}
+
+.LoginformMainDiv {
+  display: flex;
+  background-color: white;
+  width: 100%;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  max-height: 746px;
+  width: 100%;
+  height: 100%;
+  background-color: #ceacb5;
+  border-radius: 20px;
+  border: 1px solid #b8b8b8;
+}
+.Loginlabel {
+  margin-top: 100px !important;
+  font-family: "poppins" !important;
+  font-size: 20px !important;
+  font-weight: 300 !important;
+  font-size: 20px !important;
+  line-height: 30px !important;
+  color: #0b0b0b !important;
+  margin-left: 38px  !important
+}
+#Twoinputs {
+  display: flex;
+  /* height: 50%; */
+  /* background-color: beige; */
+  width: 100%;
+  padding-left: 81px;
+  box-sizing: border-box;
+}
+
+#containeroftwoinputs {
+  width: 100%;
+  /* background-color: bisque; */
+  display: flex;
+  margin-top: 36px;
+  flex-direction: column;
+  gap: 32px;
+}
+#TextfielsdDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  /* margin-bottom: 132px; */
+}
+#Loginbttn {
+  width: 150px;
+  background-color: #03a500;
+  height: 50px;
+  align-content: start;
+  border-radius: 10px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+  color: #ffffff;
+  margin-left: 20px;
+}
+#Todoimage {
+  object-fit: contain;
+  font-family: "Poppins";
+  font-size: 19px;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 30px;
+  color: #0a0909;
+  width: 5%;
+}
+
+
+@media (max-width: 715px) {
+  #VisibilityBttn {
+    left: 68%;
+  }
+}
+
+
+/*  LOGIN PAGE RESPONISVENESS */
+@media (max-width: 391px) {
+  .login-form {
+    width: 390px;
+    height: 844px;
+    border: none;
+  }
+  .custom-input {
+    width: 332.76px !important;
+    height: 69.04px !important;
+    padding-left: 17.78px !important;
+  }
+  .HeadingDiv {
+    padding-left: 28px;
+  }
+
+  .Loginlabel {
+    margin-top: 0 !important;
+    margin-left: 0 !important;
+  }
+  /* #manage_yourTaskdiv {
+    width: 10%;
+  } */
+  #Twoinputs {
+    display: flex;
+    padding: 0;
+    /* height: 50%; */
+    /* background-color: beige; */
+    /* width: 91%; */
+
+    padding-left: 29px;
+    box-sizing: border-box;
+  }
+  #TextfielsdDiv {
+    gap: 29.85px !important;
+  }
+
+  #Loginbttn {
+    margin-top: 20.33px;
+    width: 161.32px;
+    height: 61px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    color: #ffffff;
+  }
+  #dialogcontentpadding_addtask {
+    padding: 0;
+    margin: 0;
+    padding-top: 30px;
+    padding-left: 22px;
+    box-sizing: border-box;
+  }
+  #ProfileDialog {
+    padding: 0 !important;
+    padding-left: 0 !important;
+    box-sizing: none !important;
+    padding-top: 0 !important;
+    gap: 0 !important;
+    padding-left: 19px !important;
+  }
+  #Line {
+    width: 162px;
+    height: 0px;
+    margin-top: 17px;
+  }
+  .Typographyusername {
+    width: 156px;
+    height: 21px;
+    margin-top: 14px !important;
+  }
+  #Logoutpng {
+    margin-top: 6px;
+  }
+  #containeroftwoinputs {
+    margin-top: 0px;
+  }
+  #TodoimageDiv {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+ 
+ 
+  }
+  #Todoimage {
+    margin-left: 0;
+    margin-top: 0;
+  }
+  #loginlableDiv {
+    /* background-color: #e3d9d9; */
+    width: 256px;
+    height: 61.89px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-left: 27px;
+    margin-top: 25px;
+  }
+  #manage_your_taskDiv {
+    margin-left: 28.18px;
+  }
+  #manage_your_task {
+    margin-left: 0;
+  }
+  #Heading2 {
+    font-size: 87%;
+  }
+
+  #usernameinput {
+    width: 332px;
+    height: 69px;
+  }
+
+  #passwordinput {
+    width: 332px;
+    height: 69px;
+  }
+  #loginsubmitbttndiv {
+    display: flex;
+    width: 353px;
+    height: 18%;
+    align-items: flex-start;
+  }
+  .containertask {
+    padding: 0;
+    width: 390px;
+    height: 96px;
+  }
+}
+
+#loginlableDiv{
+
+  height: 100px;
+  background-color: #03a500;
+}
+
+#forms{
+  display: flex;
+  width: 40%;
+  margin-left: 40px;
+  min-width: 110px;
+}
+
+#LabelDiv{
+  display: flex;
+  width: 35%;
+}
