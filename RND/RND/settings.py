@@ -165,11 +165,11 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     # create a folder  path to your React app's static files directory later django will collect the files present here to STATIC_ROOT
-      os.path.join(BASE_DIR, 'newreact/build/static'), 
+       os.path.join(BASE_DIR, 'RND_APP\Static'),os.path.join(BASE_DIR, 'newreact/build/static'), 
     
    
 ]
-# STATIC_ROOT = os.path.join(BASE_DIR,'Staticfiles2')
+STATIC_ROOT = os.path.join(BASE_DIR,'Staticfiles')
 #STATIC_ROOT = os.path.join(BASE_DIR,) # path after creating a folder and run collectstatic command to collect staticfiles from STATICFILES_DIRS
 
 # Default primary key field type

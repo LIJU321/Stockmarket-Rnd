@@ -18,15 +18,11 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Reshape, LSTM
 
 
-# In[231]:
-
-
 df1 = pd.read_csv("RND_APP\ADANIPORTS.csv")
 #dfx = pd.read_csv(r"ADANIPORTS5.csv")  #  CSV file from - 2021-04-30  (APRIL 30 2021)till todays date.
-dfx = pd.read_csv("RND_APP\ADANIPORTSNS8.csv")
+# dfx = pd.read_csv("RND_APP\ADANIPORTSNS8.csv")
+dfx = pd.read_csv("RND_APP\ADANI-X.csv")
 df2 = df1[["Date","Open","Close","Low","High"]] 
-
-
 
 
 
@@ -34,18 +30,12 @@ df1 # 3322 rows × 15 columns
 
 
 
-
-
 dfx   
-
-
 
 
 
 dfx2 = dfx.dropna()
 dfx2
-
-
 
 
 df2
@@ -57,44 +47,18 @@ dfx3
 
 
 
-
-
 dfx4 = dfx3[["Date","Open","Close","Low","High"]]
 dfx4
-
-
 
 
 
 df = pd.concat([df2, dfx4], ignore_index=True)  # CONCATINATE DATA TO THE END OF CURRENT DATAFRAM ,, CONCATINATE DFX4 to THE df2 DATAFRAME
 
 
-
-
-
 df
 
 
-
-
-
-
-
 # **Analysis of of whole dataframe**
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -106,26 +70,13 @@ df
 close_= df["Close"].mean()
 
 
-
-
-
-
 open = df["Open"].mean()
-
-
 
 
 x = df[["Open"]]
 
 
-
-
-
 y = df[["Close"]]
-
-
-
-
 
 
 
@@ -135,11 +86,7 @@ y = df[["Close"]]
 
 
 
-
-
 sns.scatterplot(df,x="Open",y="Close")
-
-
 
 
 sns.scatterplot(df,x="Open",y="High")
@@ -171,23 +118,18 @@ Y2 = df[["High"]]
 # "Close" is our depended variable(Target) 
 
 
-
 sns.scatterplot(df)
 
-
-# In[279]:
 
 
 histx = plt.hist(x,bins=100) , plt.xlabel("X _features"), plt.ylabel("Y or frequency "), plt.title("predictors / Features histogram plot")
 
 
-# In[280]:
-
 
 hsity = plt.hist(y,bins=100),plt.xlabel("X _features"), plt.ylabel("Y or frequency "), plt.title("response/ target histogram plot")
 
 
-# In[281]:
+
 
 
 def plotter(dataframe,feauters,target):
@@ -202,8 +144,6 @@ plotter(df,"Open","Close")
 #### sns.regplot(x,y) 
 sns.regplot(df,x="Open",y="High")
 
-
-# In[283]:
 
 
 sns.scatterplot(df,x="Open",y="High")
@@ -254,7 +194,6 @@ correlation_coefficeint = np.corrcoef(coefx,coefy)[1,0]
 X_train,X_test,Y_train,Y_test = train_test_split(x,y,test_size=0.2,random_state=42)
 
 
-# In[289]:
 
 
 YY = Y_train.head(997)
@@ -539,26 +478,26 @@ print("SVM_MAE:", maesvm)
 """the model is performing very well. The low MSE and RMSE values,
 along with the high R-squared value, indicate that the model's predictions are close to the actual values.
 """
-# svmclassifierHigh = svm.SVR(kernel="linear")
-# ##### TEST #####
-# svmclassifierHigh.fit(X_train4, Y_train4)
+svmclassifierHigh = svm.SVR(kernel="linear")
+##### TEST #####
+svmclassifierHigh.fit(X_train4, Y_train4)
 
-# # Use the trained SVM model to make predictions on the scaled test data
-# Y_predHighsvm = svmclassifierHigh.predict(X_test4)
-# # Y_predHighsvm
+# Use the trained SVM model to make predictions on the scaled test data
+Y_predHighsvm = svmclassifierHigh.predict(X_test4)
+# Y_predHighsvm
 
-# # SVM MODEL evaluation ....using metrics
+# SVM MODEL evaluation ....using metrics
 
-# mseHighsvm = metrics.mean_squared_error(Y_test4,Y_predHighsvm)
-# rmseHighsvm = np.sqrt(metrics.mean_squared_error(Y_test4,Y_predHighsvm))
-# maeHighsvm =  metrics.mean_absolute_error(Y_test4,Y_predHighsvm)
-# r2Highsvm = r2_score(Y_test4,Y_predHighsvm)
+mseHighsvm = metrics.mean_squared_error(Y_test4,Y_predHighsvm)
+rmseHighsvm = np.sqrt(metrics.mean_squared_error(Y_test4,Y_predHighsvm))
+maeHighsvm =  metrics.mean_absolute_error(Y_test4,Y_predHighsvm)
+r2Highsvm = r2_score(Y_test4,Y_predHighsvm)
 
 
-# print("MSE:", mseHighsvm)
-# print("RMSE:",rmseHighsvm)
-# print("R-squared:",r2Highsvm)
-# print("MAE:", maeHighsvm)
+print("MSE:", mseHighsvm)
+print("RMSE:",rmseHighsvm)
+print("R-squared:",r2Highsvm)
+print("MAE:", maeHighsvm)
 
 
 
@@ -621,28 +560,28 @@ X_train4_  = X_train4.to_numpy()
 """model appears to perform well, with a relatively low MSE and RMSE,
 a high R-squared value indicating good explanatory power, and a reasonable MAE
 """
-# Highknn = KNeighborsRegressor()
-# # Fit the regressor to the data
-# Highknn.fit(X_train4_,Y_train4)
+Highknn = KNeighborsRegressor()
+# Fit the regressor to the data
+Highknn.fit(X_train4_,Y_train4)
 
-# # Predict the value of y for a new input x
-# KNNPREDHigh = Highknn.predict(X_test4)
-# #print(KNNPREDHigh)
+# Predict the value of y for a new input x
+KNNPREDHigh = Highknn.predict(X_test4)
+#print(KNNPREDHigh)
 
 
-# mseknnHigh = metrics.mean_squared_error(Y_test4,KNNPREDHigh)
+mseknnHigh = metrics.mean_squared_error(Y_test4,KNNPREDHigh)
 
-# # Calculate the RMSE
-# rmseknnHigh = np.sqrt(mse)
+# Calculate the RMSE
+rmseknnHigh = np.sqrt(mse)
 
-# # Calculate the R-squared
-# r2KnnHigh = r2_score(Y_test4,KNNPREDHigh)
-# maeknnHigh =  metrics.mean_absolute_error(Y_test4,KNNPREDHigh)
+# Calculate the R-squared
+r2KnnHigh = r2_score(Y_test4,KNNPREDHigh)
+maeknnHigh =  metrics.mean_absolute_error(Y_test4,KNNPREDHigh)
 
-# print("MSE:", mseknnHigh)
-# print("RMSE:",rmseknnHigh)
-# print("R-squared:",r2KnnHigh)
-# print("MAE:", maeknnHigh)
+print("MSE:", mseknnHigh)
+print("RMSE:",rmseknnHigh)
+print("R-squared:",r2KnnHigh)
+print("MAE:", maeknnHigh)
 
 
 # # MSE	Lower is better
@@ -672,8 +611,6 @@ a high R-squared value indicating good explanatory power, and a reasonable MAE
 # # To get the corresponding  stock price details Type = Adani Ports and Special Economic Zone Ld Stock price today
 
 # # neural_network and neural network model evaluation  on CLOSE
-
-
 
 """the model's performance is reasonably good"""
 # Create the neural network model
@@ -759,13 +696,7 @@ print("PREDICTED_VALUE:", CLOSE)
 
 
 
-
-
-
-
 # # RNN  MODEL ON CLOSE PRICE
-
-
 
 
 X_trainp = np.asarray(X_train)
@@ -773,50 +704,49 @@ X_testp = np.asarray(X_test)
 
 
 
-
 """These metrics indicate that your model performs well, as the errors are relatively low, 
 and the model can explain a significant portion of the variance in the data."""
 
 # Create the neural network model
-# Rnnmodel = Sequential()
-# Rnnmodel.add(LSTM(64, activation='relu', input_shape=(X_trainp.shape[1], 1)))
-# Rnnmodel.add(Dense(64, activation='relu'))
-# Rnnmodel.add(Dense(1, activation='linear'))
+Rnnmodel = Sequential()
+Rnnmodel.add(LSTM(64, activation='relu', input_shape=(X_trainp.shape[1], 1)))
+Rnnmodel.add(Dense(64, activation='relu'))
+Rnnmodel.add(Dense(1, activation='linear'))
 
-# # Compile the model
-# Rnnmodel.compile(loss='mean_squared_error', optimizer='adam')
+# Compile the model
+Rnnmodel.compile(loss='mean_squared_error', optimizer='adam')
 
-# # Reshape the input data for LSTM
-# X_train_reshaped = X_trainp.reshape(X_trainp.shape[0], X_trainp.shape[1], 1)
-# X_test_reshaped = X_testp.reshape(X_testp.shape[0], X_testp.shape[1], 1)
+# Reshape the input data for LSTM
+X_train_reshaped = X_trainp.reshape(X_trainp.shape[0], X_trainp.shape[1], 1)
+X_test_reshaped = X_testp.reshape(X_testp.shape[0], X_testp.shape[1], 1)
 
-# # Fit the model to the training data
-# Rnnmodel.fit(X_train_reshaped,Y_train, epochs=10, batch_size=32)
-
-
-# # Predict the value for a single data point
-# # input_data = np.array([735.00, 700, 740]).reshape(1, 3, 1)  #INPUT OPEN PRICE
-# # input_data_reshaped = np.array(X_test_reshaped).reshape(1, 1, 1)
-# #predicted_value = Rnnmodel.predict(input_data_reshaped)
+# Fit the model to the training data
+Rnnmodel.fit(X_train_reshaped,Y_train, epochs=10, batch_size=32)
 
 
-# predicted_value = Rnnmodel.predict(X_test_reshaped)
+# Predict the value for a single data point
+# input_data = np.array([735.00, 700, 740]).reshape(1, 3, 1)  #INPUT OPEN PRICE
+# input_data_reshaped = np.array(X_test_reshaped).reshape(1, 1, 1)
+#predicted_value = Rnnmodel.predict(input_data_reshaped)
 
-# # Evaluate the model on the test data using metrics
-# predicted_values = Rnnmodel.predict(X_test_reshaped)
-# mse = mean_squared_error(Y_test, predicted_values)
-# rmse =  np.sqrt(mse)
-# mae = mean_absolute_error(Y_test, predicted_values)
-# r2 = r2_score(Y_test, predicted_values)
 
-# # Print the predicted value and evaluation results
-# print("Mean Squared Error:", mse)
-# print("Root Mean Squared Error:", rmse)
-# print("Mean Absolute Error:", mae)
-# print("R-squared (R2) Score:", r2)
-# print()
-# #print("PREDICTED_VALUE:",predicted_value)
-# print()
+predicted_value = Rnnmodel.predict(X_test_reshaped)
+
+# Evaluate the model on the test data using metrics
+predicted_values = Rnnmodel.predict(X_test_reshaped)
+mse = mean_squared_error(Y_test, predicted_values)
+rmse =  np.sqrt(mse)
+mae = mean_absolute_error(Y_test, predicted_values)
+r2 = r2_score(Y_test, predicted_values)
+
+# Print the predicted value and evaluation results
+print("Mean Squared Error:", mse)
+print("Root Mean Squared Error:", rmse)
+print("Mean Absolute Error:", mae)
+print("R-squared (R2) Score:", r2)
+print()
+#print("PREDICTED_VALUE:",predicted_value)
+print()
 
 
 # # CNN ON CLOSE PRICE
@@ -913,42 +843,42 @@ strong performance in explaining the variance in the target variable."""
 """THIS IS MODEL IS  PERFORMING WELL  MODEL BASED ON THE METRICS"""
 
 # Create the neural network model
-# Highmodel = Sequential()
-# Highmodel.add(Dense(64, activation='relu', input_shape=(X_train4.shape[1],)))
-# Highmodel.add(Dense(64, activation='relu'))
-# Highmodel.add(Dense(1, activation='linear'))
+Highmodel = Sequential()
+Highmodel.add(Dense(64, activation='relu', input_shape=(X_train4.shape[1],)))
+Highmodel.add(Dense(64, activation='relu'))
+Highmodel.add(Dense(1, activation='linear'))
 
-# # Compile the model
-# Highmodel.compile(loss='mean_squared_error', optimizer='adam')
+# Compile the model
+Highmodel.compile(loss='mean_squared_error', optimizer='adam')
 
-# # Fit the model to the training data
-# Highmodel.fit(X_train4,Y_train4, epochs=10, batch_size=32)
+# Fit the model to the training data
+Highmodel.fit(X_train4,Y_train4, epochs=10, batch_size=32)
 
-# # Predict the values for the test data
-# predicted_valuesHigh = Highmodel.predict(X_test4)
+# Predict the values for the test data
+predicted_valuesHigh = Highmodel.predict(X_test4)
 
-# # Print the predicted values
-# #print(predicted_values)
+# Print the predicted values
+#print(predicted_values)
 
-# # Predict the values for the test data HIGH PRICE>>>>>
+# Predict the values for the test data HIGH PRICE>>>>>
 
-# """ neural network model evaluation """
+""" neural network model evaluation """
 
-# # Calculate MSE
-# msecnn = mean_squared_error(Y_test4, predicted_valuesHigh)
-# print("Mean Squared Error (MSE):", msecnn)
+# Calculate MSE
+msecnn = mean_squared_error(Y_test4, predicted_valuesHigh)
+print("Mean Squared Error (MSE):", msecnn)
 
-# # Calculate RMSE
-# rmsecnn = np.sqrt(mse)
-# print("Root Mean Squared Error (RMSE):", rmsecnn)
+# Calculate RMSE
+rmsecnn = np.sqrt(mse)
+print("Root Mean Squared Error (RMSE):", rmsecnn)
 
-# # Calculate MAE
-# maecnn = mean_absolute_error(Y_test4, predicted_valuesHigh)
-# print("Mean Absolute Error (MAE):", mae)
+# Calculate MAE
+maecnn = mean_absolute_error(Y_test4, predicted_valuesHigh)
+print("Mean Absolute Error (MAE):", mae)
 
-# # Calculate R-squared
-# r3cnn = r2_score(Y_test4, predicted_valuesHigh)
-# print("R-squared:", r3cnn)
+# Calculate R-squared
+r3cnn = r2_score(Y_test4, predicted_valuesHigh)
+print("R-squared:", r3cnn)
 
 
 
@@ -1140,103 +1070,103 @@ strong performance in explaining the variance in the target variable."""
 # ############################################################           ####################################################
 # # #  MODEL 6 - DNN HIGH price
 
-# # Create the neural network model>>>>>>>>
-# """THIS IS MODEL IS  PERFORMING WELL  MODEL BASED ON THE METRICS"""
-# Dnnmodel = Sequential()
-# Dnnmodel.add(Dense(64, activation='relu', input_shape=(X_train4.shape[1],)))
-# Dnnmodel.add(Dense(64, activation='relu'))
-# Dnnmodel.add(Dense(1, activation='linear'))
+# Create the neural network model>>>>>>>>
+"""THIS IS MODEL IS  PERFORMING WELL  MODEL BASED ON THE METRICS"""
+Dnnmodel = Sequential()
+Dnnmodel.add(Dense(64, activation='relu', input_shape=(X_train4.shape[1],)))
+Dnnmodel.add(Dense(64, activation='relu'))
+Dnnmodel.add(Dense(1, activation='linear'))
 
-# # Compile the model
-# Dnnmodel.compile(loss='mean_squared_error', optimizer='adam')
+# Compile the model
+Dnnmodel.compile(loss='mean_squared_error', optimizer='adam')
 
-# # Fit the model to the training data
-# Dnnmodel.fit(X_train4, Y_train4, epochs=10, batch_size=32)
+# Fit the model to the training data
+Dnnmodel.fit(X_train4, Y_train4, epochs=10, batch_size=32)
 
-# # Predict the values for the test data
-# predicted_values = Dnnmodel.predict(X_test4)
+# Predict the values for the test data
+predicted_values = Dnnmodel.predict(X_test4)
 
-# # Evaluate the model on the test data using metrics
-
-
-# mse = mean_squared_error(Y_test4, predicted_values)
-# mae = mean_absolute_error(Y_test4, predicted_values)
-# r2 = r2_score(Y_test4, predicted_values)
-# rmse =  np.sqrt(mse)
-
-# # Print the predicted values and evaluation results
-# #print("Predicted values:")
-# #print(predicted_values)
-# print("Mean Squared Error:", mse)
-# print("Root Mean Squared Error:", rmse)
-# print("Mean Absolute Error:", mae)
-# print("R-squared (R2) Score:", r2)
-
-# Dnnpred = Dnnmodel.predict(X_test4)
-
-# HIGH = Dnnmodel.predict([[807]]) # INput is OPEN, for output HIGH PRICE
-# print("PREDICTED_VALUE:", HIGH)
-
-# #############################################################                 #######################################################
+# Evaluate the model on the test data using metrics
 
 
+mse = mean_squared_error(Y_test4, predicted_values)
+mae = mean_absolute_error(Y_test4, predicted_values)
+r2 = r2_score(Y_test4, predicted_values)
+rmse =  np.sqrt(mse)
+
+# Print the predicted values and evaluation results
+#print("Predicted values:")
+#print(predicted_values)
+print("Mean Squared Error:", mse)
+print("Root Mean Squared Error:", rmse)
+print("Mean Absolute Error:", mae)
+print("R-squared (R2) Score:", r2)
+
+Dnnpred = Dnnmodel.predict(X_test4)
+
+HIGH = Dnnmodel.predict([[807]]) # INput is OPEN, for output HIGH PRICE
+print("PREDICTED_VALUE:", HIGH)
+
+#############################################################                 #######################################################
 
 
-# #####################################################          ###############################################################
-# # #  MODEL 7 - RNN  HIGH price
-
-# X_train4 = np.asarray(X_train4)
-# X_test4 = np.asarray(X_test4)
-
-# """These metrics indicate that your model performs well, as the errors are relatively low, 
-# and the model can explain a significant portion of the variance in the data."""
-
-# # Create the neural network model
-# Rnnmodel = Sequential()
-# Rnnmodel.add(LSTM(64, activation='relu', input_shape=(X_train4.shape[1], 1)))
-# Rnnmodel.add(Dense(64, activation='relu'))
-# Rnnmodel.add(Dense(1, activation='linear'))
-
-# # Compile the model
-# Rnnmodel.compile(loss='mean_squared_error', optimizer='adam')
-
-# # Reshape the input data for LSTM
-# X_train_reshaped = X_train4.reshape(X_train4.shape[0], X_train4.shape[1], 1)
-# X_test_reshaped = X_test4.reshape(X_test4.shape[0], X_test4.shape[1], 1)
-
-# # Fit the model to the training data
-# Rnnmodel.fit(X_train_reshaped,Y_train4, epochs=10, batch_size=32)
 
 
-# # Predict the value for a single data point
-# # input_data = np.array([735.00, 700, 740]).reshape(1, 3, 1)  #INPUT OPEN PRICE
-# # input_data_reshaped = np.array(X_test_reshaped).reshape(1, 1, 1)
-# #predicted_value = Rnnmodel.predict(input_data_reshaped)
+#####################################################          ###############################################################
+# #  MODEL 7 - RNN  HIGH price
+
+X_train4 = np.asarray(X_train4)
+X_test4 = np.asarray(X_test4)
+
+"""These metrics indicate that your model performs well, as the errors are relatively low, 
+and the model can explain a significant portion of the variance in the data."""
+
+# Create the neural network model
+Rnnmodel = Sequential()
+Rnnmodel.add(LSTM(64, activation='relu', input_shape=(X_train4.shape[1], 1)))
+Rnnmodel.add(Dense(64, activation='relu'))
+Rnnmodel.add(Dense(1, activation='linear'))
+
+# Compile the model
+Rnnmodel.compile(loss='mean_squared_error', optimizer='adam')
+
+# Reshape the input data for LSTM
+X_train_reshaped = X_train4.reshape(X_train4.shape[0], X_train4.shape[1], 1)
+X_test_reshaped = X_test4.reshape(X_test4.shape[0], X_test4.shape[1], 1)
+
+# Fit the model to the training data
+Rnnmodel.fit(X_train_reshaped,Y_train4, epochs=10, batch_size=32)
 
 
-# predicted_value = Rnnmodel.predict(X_test_reshaped)
+# Predict the value for a single data point
+# input_data = np.array([735.00, 700, 740]).reshape(1, 3, 1)  #INPUT OPEN PRICE
+# input_data_reshaped = np.array(X_test_reshaped).reshape(1, 1, 1)
+#predicted_value = Rnnmodel.predict(input_data_reshaped)
 
-# # Evaluate the model on the test data using metrics
-# predicted_values = Rnnmodel.predict(X_test_reshaped)
-# mse = mean_squared_error(Y_test4, predicted_values)
-# rmse =  np.sqrt(mse)
-# mae = mean_absolute_error(Y_test4, predicted_values)
-# r2 = r2_score(Y_test4, predicted_values)
 
-# # Print the predicted value and evaluation results
-# print("Mean Squared Error:", mse)
-# print("Root Mean Squared Error:", rmse)
-# print("Mean Absolute Error:", mae)
-# print("R-squared (R2) Score:", r2)
-# print()
-# #print("PREDICTED_VALUE:",predicted_value)
-# print()
+predicted_value = Rnnmodel.predict(X_test_reshaped)
 
-# RnnHigh = Rnnmodel.predict(np.array([807]).reshape(1, 1)) #<-- <-- # INput is OPEN for output HIGH PRICE
-# print("PREDICTED_VALUE:",RnnHigh)
+# Evaluate the model on the test data using metrics
+predicted_values = Rnnmodel.predict(X_test_reshaped)
+mse = mean_squared_error(Y_test4, predicted_values)
+rmse =  np.sqrt(mse)
+mae = mean_absolute_error(Y_test4, predicted_values)
+r2 = r2_score(Y_test4, predicted_values)
 
-# RnnHigh = Rnnmodel.predict(np.array([807]).reshape(1,1)) #<-- <-- # INput is OPEN,  for output HIGH PRICE
-# print("PREDICTED_VALUE:",RnnHigh)
+# Print the predicted value and evaluation results
+print("Mean Squared Error:", mse)
+print("Root Mean Squared Error:", rmse)
+print("Mean Absolute Error:", mae)
+print("R-squared (R2) Score:", r2)
+print()
+#print("PREDICTED_VALUE:",predicted_value)
+print()
+
+RnnHigh = Rnnmodel.predict(np.array([807]).reshape(1, 1)) #<-- <-- # INput is OPEN for output HIGH PRICE
+print("PREDICTED_VALUE:",RnnHigh)
+
+RnnHigh = Rnnmodel.predict(np.array([807]).reshape(1,1)) #<-- <-- # INput is OPEN,  for output HIGH PRICE
+print("PREDICTED_VALUE:",RnnHigh)
 # #####################################################              #######################################################
 
 
