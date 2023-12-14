@@ -6,6 +6,7 @@ from .  import RNDRUN
 # from . import Evolvier_RND
 from . import Category_Evolvier_RND
 from . import STOCK_FROM_ONLY_OPEN
+from . import STOCK_MARKET_LOW
 import requests
 import numpy as np
 
@@ -49,7 +50,7 @@ def UI(request): # UI
 
 
 ####################    STOCK    ########################
-def UI2(request, price):
+def Linear_Regressor(request, price):
     try:
         # Validate and convert the 'price' parameter to an integer
         price = int(price)
@@ -75,9 +76,9 @@ def UI2(request, price):
     except Exception as e:
         # Handle other exceptions (e.g., model prediction errors)
         return JsonResponse({'error': str(e)}, status=500)
+        
 
-
-def UI3(request, price):
+def KNN_Model(request, price):
     try:
         # Validate and convert the 'price' parameter to an integer
         price = int(price)
@@ -105,7 +106,7 @@ def UI3(request, price):
         return JsonResponse({'error': str(e)}, status=500)
 
 
-def UI4(request, price):
+def DNN_Model(request, price):
     try:
         # Validate and convert the 'price' parameter to an integer
         price = int(price)
@@ -133,7 +134,7 @@ def UI4(request, price):
         return JsonResponse({'error': str(e)}, status=500)
     
     
-def UI5(request, price):
+def Neural_Network(request, price):
     try:
         # Validate and convert the 'price' parameter to an integer
         price = int(price)
@@ -163,7 +164,7 @@ def UI5(request, price):
 
 
         
-def UI6(request, price):
+def SVM_Model(request, price):
     try:
         # Validate and convert the 'price' parameter to an integer
         price = int(price)
@@ -192,10 +193,9 @@ def UI6(request, price):
 
 
 
-
-
+#################### HIGH PRICES #########################################
         
-def HIgh_price(request, price):
+def HIgh_price_on_Linear_regression(request, price):
     try:
         # Validate and convert the 'price' parameter to an integer
         price = int(price)
@@ -224,7 +224,7 @@ def HIgh_price(request, price):
 
 
 
-def HIgh_price2(request, price):
+def HIgh_price_on_svmclassifier(request, price):
     try:
         # Validate and convert the 'price' parameter to an integer
         price = int(price)
@@ -253,13 +253,98 @@ def HIgh_price2(request, price):
 
 
 
-def HIgh_price3(request, price):
+def HIgh_price_on_knn(request, price):
     try:
         # Validate and convert the 'price' parameter to an integer
         price = int(price)
 
         # Make a prediction using your machine learning model
-        output = STOCK_FROM_ONLY_OPEN.svmclassifierHigh.predict(np.array([price]).reshape(1,-1))
+        output = STOCK_FROM_ONLY_OPEN.Highknn.predict(np.array([price]).reshape(1,-1))
+
+        # Convert the NumPy array to a Python list
+        output_list = output.tolist()
+
+        # Prepare the JSON response
+        response_data = {'Close_price': output_list}
+        s = np.asarray(response_data)
+ 
+        # Log the prediction (you can replace 'print' with a proper logger)
+        print(f'Predicted Close_price: {output_list}')
+
+        # Return the JSON response
+        return JsonResponse(response_data)
+    except ValueError:
+        # Handle invalid 'price' parameter
+        return JsonResponse({'error': 'Invalid price parameter'}, status=400)
+    except Exception as e:
+        # Handle other exceptions (e.g., model prediction errors)
+        return JsonResponse({'error': str(e)}, status=500)
+
+def HIgh_price_on_Nerual_Network(request, price):
+    try:
+        # Validate and convert the 'price' parameter to an integer
+        price = int(price)
+
+        # Make a prediction using your machine learning model
+        output = STOCK_FROM_ONLY_OPEN.Highmodel.predict(np.array([price]).reshape(1,-1))
+
+        # Convert the NumPy array to a Python list
+        output_list = output.tolist()
+
+        # Prepare the JSON response
+        response_data = {'Close_price': output_list}
+        s = np.asarray(response_data)
+ 
+        # Log the prediction (you can replace 'print' with a proper logger)
+        print(f'Predicted Close_price: {output_list}')
+
+        # Return the JSON response
+        return JsonResponse(response_data)
+    except ValueError:
+        # Handle invalid 'price' parameter
+        return JsonResponse({'error': 'Invalid price parameter'}, status=400)
+    except Exception as e:
+        # Handle other exceptions (e.g., model prediction errors)
+        return JsonResponse({'error': str(e)}, status=500)
+
+
+def HIgh_price_on_Feed_forward_Neuaral_Network(request, price):
+    try:
+        # Validate and convert the 'price' parameter to an integer
+        price = int(price)
+
+        # Make a prediction using your machine learning model
+        output = STOCK_FROM_ONLY_OPEN.ffnn_model_High.predict(np.array([price]).reshape(1,-1))
+
+        # Convert the NumPy array to a Python list
+        output_list = output.tolist()
+
+        # Prepare the JSON response
+        response_data = {'Close_price': output_list}
+        s = np.asarray(response_data)
+ 
+        # Log the prediction (you can replace 'print' with a proper logger)
+        print(f'Predicted Close_price: {output_list}')
+
+        # Return the JSON response
+        return JsonResponse(response_data)
+    except ValueError:
+        # Handle invalid 'price' parameter
+        return JsonResponse({'error': 'Invalid price parameter'}, status=400)
+    except Exception as e:
+        # Handle other exceptions (e.g., model prediction errors)
+        return JsonResponse({'error': str(e)}, status=500)
+ 
+
+
+ ################################### LOW PRICES ####################################
+def Low_on_Linear_regression(request, price):
+    try:
+        # Validate and convert the 'price' parameter to an integer
+        price = int(price)
+
+        # Make a prediction using your machine learning model
+        output = STOCK_MARKET_LOW.RegressorLow.predict(np.array([price]).reshape(1,-1))
 
         # Convert the NumPy array to a Python list
         output_list = output.tolist()
@@ -282,6 +367,121 @@ def HIgh_price3(request, price):
 
 
 
+def Low_price_svmclassifier(request, price):
+    try:
+        # Validate and convert the 'price' parameter to an integer
+        price = int(price)
+
+        # Make a prediction using your machine learning model
+        output = STOCK_MARKET_LOW.svmclassifierLow.predict(np.array([price]).reshape(1,-1))
+
+        # Convert the NumPy array to a Python list
+        output_list = output.tolist()
+
+        # Prepare the JSON response
+        response_data = {'Close_price': output_list}
+        s = np.asarray(response_data)
+ 
+        # Log the prediction (you can replace 'print' with a proper logger)
+        print(f'Predicted Close_price: {output_list}')
+
+        # Return the JSON response
+        return JsonResponse(response_data)
+    except ValueError:
+        # Handle invalid 'price' parameter
+        return JsonResponse({'error': 'Invalid price parameter'}, status=400)
+    except Exception as e:
+        # Handle other exceptions (e.g., model prediction errors)
+        return JsonResponse({'error': str(e)}, status=500)
+
+
+
+def Low_price_on_knn(request, price):
+    try:
+        # Validate and convert the 'price' parameter to an integer
+        price = int(price)
+
+        # Make a prediction using your machine learning model
+        output = STOCK_MARKET_LOW.Lowknn.predict(np.array([price]).reshape(1,-1))
+
+        # Convert the NumPy array to a Python list
+        output_list = output.tolist()
+
+        # Prepare the JSON response
+        response_data = {'Close_price': output_list}
+        s = np.asarray(response_data)
+ 
+        # Log the prediction (you can replace 'print' with a proper logger)
+        print(f'Predicted Close_price: {output_list}')
+
+        # Return the JSON response
+        return JsonResponse(response_data)
+    except ValueError:
+        # Handle invalid 'price' parameter
+        return JsonResponse({'error': 'Invalid price parameter'}, status=400)
+    except Exception as e:
+        # Handle other exceptions (e.g., model prediction errors)
+        return JsonResponse({'error': str(e)}, status=500)
+
+
+
+
+def Low_price_on_Nerual_Network(request, price):
+    try:
+        # Validate and convert the 'price' parameter to an integer
+        price = int(price)
+
+        # Make a prediction using your machine learning model
+        output = STOCK_MARKET_LOW.Lowmodel_neural_network.predict(np.array([price]).reshape(1,-1))
+
+        # Convert the NumPy array to a Python list
+        output_list = output.tolist()
+
+        # Prepare the JSON response
+        response_data = {'Close_price': output_list}
+        s = np.asarray(response_data)
+ 
+        # Log the prediction (you can replace 'print' with a proper logger)
+        print(f'Predicted Close_price: {output_list}')
+
+        # Return the JSON response
+        return JsonResponse(response_data)
+    except ValueError:
+        # Handle invalid 'price' parameter
+        return JsonResponse({'error': 'Invalid price parameter'}, status=400)
+    except Exception as e:
+        # Handle other exceptions (e.g., model prediction errors)
+        return JsonResponse({'error': str(e)}, status=500)
+    
+
+
+    
+def Low_price_on_Feed_forward_Neuaral_Network(request, price):
+    try:
+        # Validate and convert the 'price' parameter to an integer
+        price = int(price)
+
+        # Make a prediction using your machine learning model
+        output = STOCK_MARKET_LOW.ffnn_model_low.predict(np.array([price]).reshape(1,-1))
+
+        # Convert the NumPy array to a Python list
+        output_list = output.tolist()
+
+        # Prepare the JSON response
+        response_data = {'Close_price': output_list}
+        s = np.asarray(response_data)
+ 
+        # Log the prediction (you can replace 'print' with a proper logger)
+        print(f'Predicted Close_price: {output_list}')
+
+        # Return the JSON response
+        return JsonResponse(response_data)
+    except ValueError:
+        # Handle invalid 'price' parameter
+        return JsonResponse({'error': 'Invalid price parameter'}, status=400)
+    except Exception as e:
+        # Handle other exceptions (e.g., model prediction errors)
+        return JsonResponse({'error': str(e)}, status=500)
 
 
 

@@ -13,7 +13,6 @@ export default function Model(props) {
   // console.log(myArray);
   // console.log(Data)
   // console.log(Array.isArray(Data))
-
   ////////////////////////////////
 
   // useEffect(() => {
@@ -78,7 +77,7 @@ export default function Model(props) {
     // });
 
     axios
-      .get(`http://127.0.0.1:8000/${props.alg}/${Price}/`)
+      .get(`http://127.0.0.1:8000/${props.alg}/${props.textfieldvalue}/`)
       .then((response) => {
         // console.log(response); // Access the data directly
         setData(response.data.Close_price);
@@ -88,21 +87,22 @@ export default function Model(props) {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
+    
   };
 
+  console.log(Price);
   return (
     <div id="maindiv">
       <div id="TodoimageDiv">
         <Typography id="Todoimage">{props.name}</Typography>
-
         <Form id="forms" onSubmit={submit}>
           <TextField
             name="value"
-            value={Price}
+            value={props.textfieldvalue}
             onChange={(event) => setPrice(event.target.value)}
             id="price"
             variant="outlined"
-            placeholder="Enter The Open Price"
+            placeholder="Enter Open Price"
             InputProps={{
               style: {
                 maxWidth: "200px",
@@ -114,84 +114,6 @@ export default function Model(props) {
               },
             }}
           />
-          {/* <TextField
-          variant="outlined"
-          type="text"
-          placeholder="Username"
-          name="username"
-          required
-          onChange={(e) => setUsername(e.target.value)}
-          InputProps={{
-            classes: {
-              root: "custom-input",
-            },
-            style: {
-              paddingLeft: "100.78px !important",
-              fontFamily: "Poppins, sans-serif",
-              fontStyle: "normal",
-              fontWeight: "400",
-              fontSize: "20px",
-              lineHeight: "30px",
-              color: "#000000",
-              maxWidth: "604px",
-              maxHeight: "74px",
-              width:"100%",
-              height:"100%",
-              background: "#FFFFFF",
-              border: "1px solid #646363",
-              borderRadius: "15px",
-            },
-          }}
-          InputLabelProps={{
-            style: {
-              fontFamily: "Poppins",
-              fontStyle: "normal",
-              fontWeight: "400",
-              fontSize: "20px",
-              lineHeight: "30px",
-              color: "#717171",
-         
-            },
-          }}
-        />
-        <TextField
-          variant="outlined"
-          type="password"
-          placeholder="Password"
-          name="password"
-          required
-          onChange={(e) => setPassword(e.target.value)}
-          InputProps={{
-            classes: {
-              root: "custom-input",
-            },
-            style: {
-              fontFamily: "Poppins, sans-serif",
-              fontStyle: "normal",
-              fontWeight: "400",
-              fontSize: "20px",
-              lineHeight: "30px",
-              color: "#000000",
-              maxWidth: "604px",
-              maxHeight: "74px",
-              width:"100%",
-              height:"100%",
-              background: "#FFFFFF",
-              // border: "1px solid #646363",
-              borderRadius: "15px",
-            },
-          }}
-          InputLabelProps={{
-            style: {
-              fontFamily: "Poppins",
-              fontStyle: "normal",
-              fontWeight: 400,
-              fontSize: "20px",
-              lineHeight: "30px",
-              color: "#717171",
-            },
-          }}
-        />{" "} */}
 
           <Button id="Loginbttn" type="submit" onClick={submit}>
             PREDICT
@@ -200,7 +122,7 @@ export default function Model(props) {
         <div id="LabelDiv">
           <TextField id="Label" type="text" value={Data} aria-readonly />
           {/* <input id="Label" type="text" value={Data} readOnly /> */}
-          <label id="Label2">Close</label>
+          <label id="Label2">{props.pos}</label>
         </div>
         {/* <TextField id="Label" type="text"  value={Data} aria-readonly/>
         <label id="Label2">Close</label> */}

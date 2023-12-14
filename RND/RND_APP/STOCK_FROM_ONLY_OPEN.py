@@ -1239,40 +1239,40 @@ print("PREDICTED_VALUE:",RnnHigh)
 # strong performance in explaining the variance in the target variable."""
 
 # # Create the FFNN model
-# ffnn_model = Sequential()
-# ffnn_model.add(Dense(64, activation='relu', input_shape=(X_train4.shape[1],)))
-# ffnn_model.add(Dense(64, activation='relu'))
-# ffnn_model.add(Dense(1, activation='linear'))
+ffnn_model_High = Sequential()
+ffnn_model_High.add(Dense(64, activation='relu', input_shape=(X_train4.shape[1],)))
+ffnn_model_High.add(Dense(64, activation='relu'))
+ffnn_model_High.add(Dense(1, activation='linear'))
 
-# # Compile the model
-# ffnn_model.compile(loss='mean_squared_error', optimizer='adam')
+# Compile the model
+ffnn_model_High.compile(loss='mean_squared_error', optimizer='adam')
 
-# # Fit the model to the training data
-# ffnn_model.fit(X_train4, Y_train4, epochs=10, batch_size=32)
+# Fit the model to the training data
+ffnn_model_High.fit(X_train4, Y_train4, epochs=10, batch_size=32)
 
-# # Predict using the fitted FFNN model
-# Y_pred_ffnn = ffnn_model.predict(X_test4)
+# Predict using the fitted FFNN model
+Y_pred_ffnn = ffnn_model_High.predict(X_test4)
 
-# # Evaluate the FFNN model on the test data using metrics
-# mse_ffnn = mean_squared_error(Y_test4, Y_pred_ffnn)
-# rmse_ffnn = np.sqrt(mse_ffnn)
-# mae_ffnn = mean_absolute_error(Y_test4, Y_pred_ffnn)
-# r2_ffnn = r2_score(Y_test4, Y_pred_ffnn)
+# Evaluate the FFNN model on the test data using metrics
+mse_ffnn = mean_squared_error(Y_test4, Y_pred_ffnn)
+rmse_ffnn = np.sqrt(mse_ffnn)
+mae_ffnn = mean_absolute_error(Y_test4, Y_pred_ffnn)
+r2_ffnn = r2_score(Y_test4, Y_pred_ffnn)
 
-# # Print the predicted values and evaluation results
-# print("Predicted Values (FFNN):")
-# #print(Y_pred_ffnn)
-# print()
-# print("Mean Squared Error (FFNN):", mse_ffnn)
-# print("Root Mean Squared Error (FFNN):", rmse_ffnn)
-# print("Mean Absolute Error (FFNN):", mae_ffnn)
+# Print the predicted values and evaluation results
+print("Predicted Values (FFNN):")
+#print(Y_pred_ffnn)
+print()
+print("Mean Squared Error (FFNN):", mse_ffnn)
+print("Root Mean Squared Error (FFNN):", rmse_ffnn)
+print("Mean Absolute Error (FFNN):", mae_ffnn)
 
-# print("R-squared (R2) Score (FFNN):", r2_ffnn)
+print("R-squared (R2) Score (FFNN):", r2_ffnn)
 
-# PREDICTEDHIGH = ffnn_model.predict([[807]])  #<-- <-- # INput is OPEN for output HIGH PRICE
-# print("PREDICTED_VALUE:",PREDICTEDHIGH)
+PREDICTEDHIGH = ffnn_model_High.predict([[807]])  #<-- <-- # INput is OPEN for output HIGH PRICE
+print("PREDICTED_VALUE:",PREDICTEDHIGH)
 
 # #######################################################          ########################################################
 
-
-# print("CODE EXECUTED")
+print()
+print("CODE EXECUTED")
