@@ -4,7 +4,7 @@ import React from "react";
 import { useState } from "react";
 // import { useEffect } from "react";
 
-import {TextField } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import Model from "./Model";
 import { Fragment } from "react";
 
@@ -106,24 +106,24 @@ export const LoginForm = () => {
           <div id="Tittle1">
             <Typography id="Tittle">Stock Prediction System</Typography>
           </div>
-            <TextField
-              name="value"
-              value={Price}
-              onChange={(event) => setPrice(event.target.value)}
-              id="price"
-              variant="outlined"
-              placeholder="Enter Open Price"
-              InputProps={{
-                style: {
-                  maxWidth: "200px",
-                  maxHeight: "74px",
-                  width: "100%",
-                  height: "100%",
-                  marginLeft: "10px",
-                  backgroundColor: "white",
-                },
-              }}
-            />
+          <TextField
+            name="value"
+            value={Price}
+            onChange={(event) => setPrice(event.target.value)}
+            id="price"
+            variant="outlined"
+            placeholder="Enter Open Price"
+            InputProps={{
+              style: {
+                maxWidth: "200px",
+                maxHeight: "74px",
+                width: "100%",
+                height: "100%",
+                marginLeft: "10px",
+                backgroundColor: "white",
+              },
+            }}
+          />
           <Model
             name={"Linear Regression"}
             alg={"Regression"}
@@ -133,12 +133,6 @@ export const LoginForm = () => {
           <Model
             name={"KNN neighbours"}
             alg={"KNN"}
-            pos={"Close"}
-            textfieldvalue={Price}
-          />
-          <Model
-            name={"DNN"}
-            alg={"DNN"}
             pos={"Close"}
             textfieldvalue={Price}
           />
@@ -155,8 +149,20 @@ export const LoginForm = () => {
             textfieldvalue={Price}
           />
           <Model
-            name={"HIgh_on_regression"}
-            alg={"HIgh_on_regression"}
+            name={"RNN"}
+            alg={"RNN"}
+            pos={"Close"}
+            textfieldvalue={Price}
+          />
+          <Model
+            name={"Dicision_Tree"}
+            alg={"Dicision_Tree"}
+            pos={"Close"}
+            textfieldvalue={Price}
+          />
+          <Model
+            name={"Dicision_Tree_on_High"}
+            alg={"Dicision_Tree_on_High"}
             pos={"High"}
             textfieldvalue={Price}
           />
@@ -167,21 +173,26 @@ export const LoginForm = () => {
             textfieldvalue={Price}
           />
           <Model
-            name={"HIgh_price_on_knn"}
-            alg={"HIgh_price_on_knn"}
-            pos={"High"}
-            textfieldvalue={Price}
-            
-          />
-          <Model
             name={"HIgh_price_on_Nerual_Network"}
             alg={"HIgh_price_on_Nerual_Network"}
             pos={"High"}
             textfieldvalue={Price}
           />
           <Model
+            name={"HIgh_on_regression"}
+            alg={"HIgh_on_regression"}
+            pos={"High"}
+            textfieldvalue={Price}
+          />
+          <Model
             name={"HIgh_price_on_Feed_forward_Neuaral_Network"}
             alg={"HIgh_price_on_Feed_forward_Neuaral_Network"}
+            pos={"High"}
+            textfieldvalue={Price}
+          />
+          <Model
+            name={"HIgh_price_on_knn"}
+            alg={"HIgh_price_on_knn"}
             pos={"High"}
             textfieldvalue={Price}
           />
@@ -210,8 +221,14 @@ export const LoginForm = () => {
             textfieldvalue={Price}
           />
           <Model
-            name={"Low_on_Feed_forward_Neuaral_NetworkM"}
+            name={"Low_on_Feed_forward_Neuaral_Network"}
             alg={"Low_on_Feed_forward_Neuaral_Network"}
+            pos={"Low"}
+            textfieldvalue={Price}
+          />
+          <Model
+            name={"Dicision_Tree_on_Low"}
+            alg={"Dicision_Tree_on_Low"}
             pos={"Low"}
             textfieldvalue={Price}
           />
