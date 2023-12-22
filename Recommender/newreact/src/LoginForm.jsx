@@ -3,7 +3,7 @@ import React from "react";
 // import { Form } from "react-bootstrap";
 import { useState } from "react";
 // import { useEffect } from "react";
-
+// import Grid from "./Grid";
 import { TextField } from "@material-ui/core";
 import Model from "./Model";
 import { Fragment } from "react";
@@ -234,6 +234,7 @@ export const LoginForm = () => {
           />
           <Typography className="Loginlabel">Adani Ports </Typography>
         </div>
+    {/* <Grid/> */}
       </div>
     </Fragment>
   );
